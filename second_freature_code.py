@@ -1,17 +1,36 @@
 # defining new function 
+import math
+
 def equation_roots(a, b, c):
-    import math
-    if b**2-4*a*c==0:
-        x1,x2=-b/(2*a),-b/(2*a)
-    elif b**2-4*a*c>0:
-        x1=(-b-math.sqrt(b**2-4*a*c))/(2*a)
-        x2=(-b+math.sqrt(b**2-4*a*c))/(2*a)
-        x1,x2=min(x1,x2),max(x1,x2)
-    return x1,x2
-# reading inputs
-a, b, c = int(input()), int(input()), int(input())
+  """ returns the roots of a quadratic equation with known parameters a, b, c: a*x**2+b*x+c"""
+  d=b**2-4*a*c #d-equation discriminant
+  if d==0:
+    x1,x2=-b/(2*a),-b/(2*a)
+  elif d>0:
+    x1=(-b-math.sqrt(d))/(2*a)
+    x2=(-b+math.sqrt(d))/(2*a)
+    x1,x2=min(x1,x2),max(x1,x2)
+  else:
+    x1="No"
+    x2="roots"
+  return x1,x2
+  
+# reading and cheking inputs
+a, b, c = input(), input(), input()
+try:
+  int(a),int(b),int(c)
+except ValueError:
+  poss_error='Not_int'
+else:
+  a=int(a)
+  b=int(b)
+  c=int(c)
+  poss_error='ok'
 
 # calling the function
-x1, x2 = equation_roots(a, b, c)
-print(x1, x2)
+if __name__=="__main__" and poss_error=='ok':
+  x1,x2=equation_roots(a, b, c)
+  print(x1, x2)
+else:
+  print('Variables are not integer')
 
