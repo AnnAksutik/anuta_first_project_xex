@@ -6,29 +6,29 @@ def equation_roots(a, b, c):
   d=b**2-4*a*c #d-equation discriminant
   if d==0:
     x1,x2=-b/(2*a),-b/(2*a)
+    return x1,x2
   elif d>0:
     x1=(-b-math.sqrt(d))/(2*a)
     x2=(-b+math.sqrt(d))/(2*a)
     x1,x2=min(x1,x2),max(x1,x2)
+    return x1,x2
   else:
-    x1="No"
-    x2="roots"
-  return x1,x2
-  
+    x1=None
+    x2=None
+    return x1,x2
+ 
 # reading and cheking inputs
-a, b, c = input(), input(), input()
-try:
-  int(a),int(b),int(c)
-except ValueError:
-  poss_error='Not_int'
-else:
-  a=int(a)
-  b=int(b)
-  c=int(c)
-  poss_error='ok'
+while True:
+    a,b,c = input(),input(),input()
+    try:
+        a,b,c=float(a),float(b),float(c)
+        break
+    except ValueError:
+       print("Some inputs are not numbers.Please, try again")
+
 
 # calling the function
-if __name__=="__main__" and poss_error=='ok':
+if __name__=="__main__":
   x1,x2=equation_roots(a, b, c)
   print(x1, x2)
 else:
