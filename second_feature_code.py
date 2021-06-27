@@ -6,10 +6,10 @@ def equation_roots(ratio_1, ratio_2, ratio_3):
     """ returns the roots of a quadratic equation with known parameters a, b, c: a*x**2+b*x+c"""
     d = ratio_2 ** 2 - 4 * ratio_1 * ratio_3  # d-equation discriminant
     if d == 0:
-        root_1, root_2 = round(-ratio_2 / (2 * ratio_1), 2), round(-ratio_2 / (2 * ratio_1), 2)
+        root_1, root_2 = -ratio_2 / (2 * ratio_1), -ratio_2 / (2 * ratio_1)
     elif d > 0:
-        root_1 = round((-ratio_2 - math.sqrt(d)) / (2 * ratio_1), 2)
-        root_2 = round((-ratio_2 + math.sqrt(d)) / (2 * ratio_1), 2)
+        root_1 = (-ratio_2 - math.sqrt(d)) / (2 * ratio_1)
+        root_2 = (-ratio_2 + math.sqrt(d)) / (2 * ratio_1)
         root_1, root_2 = min(root_1, root_2), max(root_1, root_2)
     else:
         root_1 = None
@@ -28,8 +28,11 @@ if __name__ == "__main__":
             a, b, c = float(a), float(b), float(c)
             break
         except ValueError:
-            print("Some inputs are not numbers.Please, try again")
+            print("Some inputs are not numbers. Please, try again")
     x1, x2 = equation_roots(a, b, c)
-    print("The answer is", x1, x2)
+    if x1 is None:
+        print(f"The roots of quadratic equation are {x1} and {x2}")
+    else:
+        print(f"The roots of quadratic equation are {round(x1,2)} and {round(x2,2)}")
 else:
     print("Variables are not integer")
